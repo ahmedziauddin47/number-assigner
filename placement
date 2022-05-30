@@ -9,8 +9,6 @@ using namespace std;
 
 void placement()
 {
-	int total = 0;
-	int average = 0;
 	int counter = 0;
 	char choice = 'y';
 	cout << "please enter total number of participants" << endl;
