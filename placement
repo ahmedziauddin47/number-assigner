@@ -1,0 +1,75 @@
+#include <iostream>
+#include <istream>
+#include <cstdlib>
+#include <ctime>
+#include <string>
+#include <limits>
+
+using namespace std;
+
+void placement()
+{
+	int total = 0;
+	int average = 0;
+	int counter = 0;
+	char choice = 'y';
+	cout << "please enter total number of participants" << endl;
+	cin >> counter;
+	int* participant = new int[counter];
+	for (int i = 0; i < counter; i++)
+	{
+		participant[i] = i;
+	}
+	string* name = new string[counter];
+	for (int i = 0; i < counter; i++)
+	{
+		cout << "please enter the name of a participant (enter done to quit)" << endl;
+		cin >> name[i];
+		cin.ignore(3000, '\n');
+
+		if (name[i] == "done")
+		{
+			break;
+		}
+	}
+	for (int i = 0; i < counter; i++)
+	{
+		cout << i;
+		cout << "\t" << name[i] << endl;
+	}
+
+	while (choice == 'y')
+	{
+		cout << "would you like to shuffle participants? y/n" << endl;
+		cin >> choice;
+		cin.ignore(3000, '\n');
+
+		if (choice == 'y')
+		{
+			int temp = 0;
+			int randomIndex = 0;
+			for (int i = 0; i < counter; i++)
+			{
+				randomIndex = rand() % counter;
+				temp = participant[i];
+				participant[i] = participant[randomIndex];
+				participant[randomIndex] = temp;
+			}
+			for (int i = 0; i < counter; i++)
+			{
+				cout << name[i];
+
+				cout << "\t" << participant[i] << endl;
+			}
+		}
+	}
+	delete[] participant;
+	delete[] name;
+}
+
+int main()
+{
+	srand(time(NULL));
+	placement();
+
+}
